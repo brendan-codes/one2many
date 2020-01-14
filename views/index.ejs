@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Message Bored!</h1>
+    <hr>
+    <p>Type a message here!</p>
+    <form action="/message" method="post">
+       Name: <input type="text" name="name"><br>
+       Message: <input type="text" name="text"><br>
+       <input type="submit" value="leave a message!">
+    </form>
+
+    <% for(let message of messages){ %>
+
+        <h3>Name: <%= message.name %> </h3>
+        <h3>Message: <%= message.text %></h3>
+        <h3>ID: <%= message._id %></h3>
+
+        <% for(let comment of message._comments){ %>
+            <p>Name: <%= comment.name %> </p>
+            <p>Comment: <%= comment.text %></p>
+        <% } %>
+        <form action="/comment/<%= message._id %>" method="post">
+            Name: <input type="text" name="name"><br>
+            Comment: <input type="text" name="text"><br>
+            <input type="submit" value="leave a comment!">
+        </form>
+    <% } %>
+
+    </body>
+</html>
